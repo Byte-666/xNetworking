@@ -466,6 +466,11 @@ function Set-TargetResource
                     $PSBoundParameters.DisplayName = $Name
                 }
             }
+            # Need to remove Group
+            if ($PSBoundParameters.ContainsKey('Group'))
+            {
+                $null = $PSBoundParameters.Remove('Group')                    
+            }
 
             # Add the new Firewall rule based on specified parameters
             New-NetFirewallRule @PSBoundParameters
